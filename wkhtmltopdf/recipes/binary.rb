@@ -6,14 +6,16 @@ remote_file download_dest do
   source node['wkhtmltopdf']['mirror_url']
   mode '0644'
   action :create_if_missing
-  Chef::Log.info('finished remote file download dest')
+end
+
+execute 'install_wkhtmltoimage' do
+  cwd cache_dir
+  command "cp node['wkhtmltopdf']['archive'] prueba.tar.xz"
+  creates "prueba.tar.xz"
 end
 
 execute 'extract_wkhtmltopdf' do
   cwd cache_dir
-  Chef::Log.info('finished remote file download dest')
-  Chef::Log.info(cache_dir)
-  Chef::Log.info("tar -xJf #{download_dest}")
   command "tar -xJf #{download_dest}"
   creates File.join(cache_dir, 'wkhtmltox')
 end
