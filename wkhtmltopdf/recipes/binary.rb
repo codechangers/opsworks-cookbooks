@@ -10,7 +10,7 @@ end
 
 execute 'install_wkhtmltoimage' do
   cwd cache_dir
-  command "cp node['wkhtmltopdf']['archive'] prueba.tar.xz"
+  command "cp #{node['wkhtmltopdf']['archive']} prueba.tar.xz"
   creates "prueba.tar.xz"
 end
 
