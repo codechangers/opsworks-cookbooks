@@ -8,15 +8,9 @@ remote_file download_dest do
   action :create_if_missing
 end
 
-execute 'install_wkhtmltoimage' do
-  cwd cache_dir
-  command "cp #{node['wkhtmltopdf']['archive']} /var/lib/prueba.tar.xz"
-  creates "prueba.tar.xz"
-end
-
 execute 'extract_wkhtmltopdf' do
   cwd cache_dir
-  command "tar -xJf #{download_dest}"
+  command "tar xf #{download_dest}"
   creates File.join(cache_dir, 'wkhtmltox')
 end
 
