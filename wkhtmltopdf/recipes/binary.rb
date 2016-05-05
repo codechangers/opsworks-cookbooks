@@ -9,7 +9,7 @@ remote_file download_dest do
 end
 
 execute 'extract_wkhtmltopdf' do
-  command "tar xf #{cache_dir}#{download_dest}"
+  command "tar xf #{download_dest}"
   creates File.join(cache_dir, 'wkhtmltox')
 end
 
