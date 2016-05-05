@@ -3,19 +3,6 @@ download_dest = File.join(cache_dir, node['wkhtmltopdf']['archive'])
 wkhtmltopdf_version = Chef::Version.new(node['wkhtmltopdf']['version'])
 
 
-
-execute 'install_wkhtmltoimage' do
-  cwd cache_dir
-  command "cp wkhtmltox/bin/wkhtmltoimage #{node['wkhtmltopdf']['install_dir']}/wkhtmltoimage"
-  creates "#{node['wkhtmltopdf']['install_dir']}/wkhtmltoimage"
-end
-
-execute 'install_wkhtmltopdf' do
-  cwd cache_dir
-  command "cp wkhtmltox/bin/wkhtmltopdf #{node['wkhtmltopdf']['install_dir']}/wkhtmltopdf"
-  creates "#{node['wkhtmltopdf']['install_dir']}/wkhtmltopdf"
-end
-
 unless node['wkhtmltopdf']['lib_dir'].empty?
   execute 'install_wkhtmltox_so' do
     cwd cache_dir
