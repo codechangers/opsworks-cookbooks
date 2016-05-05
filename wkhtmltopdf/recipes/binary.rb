@@ -9,18 +9,18 @@ remote_file download_dest do
 end
 
 execute 'install_wkhtmltoimage' do
-  command "cp #{cache_dir}wkhtmltox/bin/wkhtmltoimage #{node['wkhtmltopdf']['install_dir']}/wkhtmltoimage"
+  command "cp #{cache_dir}/wkhtmltox/bin/wkhtmltoimage #{node['wkhtmltopdf']['install_dir']}/wkhtmltoimage"
   creates "#{node['wkhtmltopdf']['install_dir']}/wkhtmltoimage"
 end
 
 execute 'install_wkhtmltopdf' do
-  command "cp #{cache_dir}wkhtmltox/bin/wkhtmltopdf #{node['wkhtmltopdf']['install_dir']}/wkhtmltopdf"
+  command "cp #{cache_dir}/wkhtmltox/bin/wkhtmltopdf #{node['wkhtmltopdf']['install_dir']}/wkhtmltopdf"
   creates "#{node['wkhtmltopdf']['install_dir']}/wkhtmltopdf"
 end
 
 unless node['wkhtmltopdf']['lib_dir'].empty?
   execute 'install_wkhtmltox_so' do
-    command "cp #{cache_dir}wkhtmltox/lib/libwkhtmltox.so.#{node['wkhtmltopdf']['version']} #{node['wkhtmltopdf']['lib_dir']}/libwkhtmltox.so.#{node['wkhtmltopdf']['version']}"
+    command "cp #{cache_dir}/wkhtmltox/lib/libwkhtmltox.so.#{node['wkhtmltopdf']['version']} #{node['wkhtmltopdf']['lib_dir']}/libwkhtmltox.so.#{node['wkhtmltopdf']['version']}"
     creates "#{node['wkhtmltopdf']['lib_dir']}/libwkhtmltox.so.#{node['wkhtmltopdf']['version']}"
   end
 
