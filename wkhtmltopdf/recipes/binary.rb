@@ -8,11 +8,6 @@ remote_file download_dest do
   action :create_if_missing
 end
 
-execute 'extract_wkhtmltopdf' do
-  command "tar xf #{download_dest}"
-  creates File.join(cache_dir, 'wkhtmltox')
-end
-
 execute 'install_wkhtmltoimage' do
   command "cp #{cache_dir}wkhtmltox/bin/wkhtmltoimage #{node['wkhtmltopdf']['install_dir']}/wkhtmltoimage"
   creates "#{node['wkhtmltopdf']['install_dir']}/wkhtmltoimage"
